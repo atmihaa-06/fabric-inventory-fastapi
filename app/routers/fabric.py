@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models import Fabric
 from app.schemas import FabricCreate, FabricResponse, FabricUpdate, StockUpdate
+import pandas as pd
+from fastapi import UploadFile, File
 
 router = APIRouter(
     prefix="/fabrics",
@@ -15,6 +17,7 @@ router = APIRouter(
 def get_all_fabrics(
     db: Session = Depends(get_db)
 ):
+
     fabrics = db.query(Fabric).all()
 
     return fabrics
@@ -35,6 +38,18 @@ def create_fabric(
     fabric: FabricCreate,
     db: Session = Depends(get_db)
 ):
+
+    existing_fabric = db.query(Fabric).filter(
+        Fabric.fabric_name == fabric.fabric_name,
+        Fabric.color == fabric.color
+    ).first()
+
+    if existing_fabric:
+        raise HTTPException(
+            status_code=400,
+            detail="Fabric with this color already exists"
+        )
+
     new_fabric = Fabric(
         fabric_name=fabric.fabric_name,
         fabric_type=fabric.fabric_type,
@@ -122,3 +137,45 @@ def update_stock(
     db.refresh(fabric)
 
     return fabric
+
+@router.post("/upload-excel")
+def upload_excel(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+    df = pd.read_excel(file.file)
+
+    imported_count = 0
+    skipped_count = 0
+
+    for _, row in df.iterrows():
+
+        existing_fabric = db.query(Fabric).filter(
+            Fabric.fabric_name == row["fabric_name"],
+            Fabric.color == row["color"]
+        ).first()
+
+        if existing_fabric:
+            skipped_count += 1
+            continue
+
+        fabric = Fabric(
+            fabric_name=row["fabric_name"],
+            fabric_type=row["fabric_type"],
+            color=row["color"],
+            gsm=row["gsm"],
+            price_per_meter=row["price_per_meter"],
+            available_stock=row["available_stock"],
+            supplier_name=row["supplier_name"]
+        )
+
+        db.add(fabric)
+        imported_count += 1
+
+    db.commit()
+
+    return {
+        "imported": imported_count,
+        "skipped": skipped_count,
+        "message": "Excel import completed"
+    }
