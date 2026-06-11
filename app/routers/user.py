@@ -1,10 +1,11 @@
 print("USER ROUTER LOADED")
+
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import User
+from app.models import User, Role
 from app.schemas import UserCreate, UserResponse
 
 router = APIRouter(
@@ -28,10 +29,20 @@ def create_user(
             detail="Username already exists"
         )
 
+    role = db.query(Role).filter(
+        Role.role_id == user.role_id
+    ).first()
+
+    if not role:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid Role ID"
+        )
+
     new_user = User(
         username=user.username,
         password=user.password,
-        role=user.role
+        role_id=user.role_id
     )
 
     db.add(new_user)

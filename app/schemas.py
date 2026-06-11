@@ -39,20 +39,18 @@ class StockUpdate(BaseModel):
     available_stock: int = Field(..., ge=0)
 
 class UserCreate(BaseModel):
-    username: str
-    password: str
-    role: str
+    username: str = Field(..., min_length=3)
+    password: str = Field(..., min_length=4)
+
+    role_id: int
 
 
 class UserResponse(BaseModel):
     id: int
+
     username: str
-    role: str
+
+    role_id: int
 
     class Config:
         from_attributes = True
-
-class UserCreate(BaseModel):
-    username: str = Field(..., min_length=3)
-    password: str = Field(..., min_length=4)
-    role: str

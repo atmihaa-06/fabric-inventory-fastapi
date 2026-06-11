@@ -18,6 +18,21 @@ from starlette.middleware.sessions import SessionMiddleware
 
 
 Base.metadata.create_all(bind=engine)
+from app.models import Role
+from app.database import SessionLocal
+
+db = SessionLocal()
+
+if db.query(Role).count() == 0:
+
+    db.add(Role(role_id=1, role_name="admin"))
+    db.add(Role(role_id=2, role_name="sales"))
+    db.add(Role(role_id=3, role_name="purchase"))
+    db.add(Role(role_id=4, role_name="accounts"))
+
+    db.commit()
+
+db.close()
 
 app = FastAPI(
     title="Fabric Inventory API"
@@ -74,21 +89,21 @@ def login(
     if user.password != password:
         return {"message": "Invalid username or password"}
     request.session["username"] = user.username
-    request.session["role"] = user.role
+    request.session["role_id"] = user.role_id
 
-    if user.role == "admin":
+    if user.role_id == 1:
         return RedirectResponse(
             url="/admin",
             status_code=303
         )
 
-    elif user.role == "sales":
+    elif user.role_id == 2:
         return RedirectResponse(
             url="/sales",
             status_code=303
         )
 
-    elif user.role == "purchase":
+    elif user.role_id == 3:
         return RedirectResponse(
             url="/purchase",
             status_code=303
@@ -99,7 +114,7 @@ def login(
 @app.get("/admin")
 def admin_dashboard(request: Request):
 
-    if request.session.get("role") != "admin":
+    if request.session.get("role_id") != 1:
         return RedirectResponse(
             url="/login",
             status_code=303
@@ -119,7 +134,7 @@ def sales_dashboard(request: Request):
 
     role = request.session.get("role")
 
-    if role not in ["admin", "sales"]:
+    if role_id not in [1,2]:
         return RedirectResponse(
             url="/login",
             status_code=303
@@ -140,7 +155,7 @@ def purchase_dashboard(request: Request):
 
     role = request.session.get("role")
 
-    if role not in ["admin", "purchase"]:
+    if role_id not in [1,3]:
         return RedirectResponse(
             url="/login",
             status_code=303
