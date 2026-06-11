@@ -2,20 +2,25 @@
 <html>
 <head>
     <title>Sales Dashboard</title>
-    <link rel="stylesheet" href="/static/dashboard.css">
+    <link rel="stylesheet" href="/static/sales.css">
 </head>
 <body>
 
 <div class="container">
 
     <div class="header">
-        <h1>Sales Dashboard</h1>
-        <p>Welcome, {{ username }}</p>
 
-        <a href="/logout">
-            <button>Logout</button>
+    <h1>Sales Dashboard</h1>
+
+    <div class="user-box">
+        <span>Welcome, {{ username }}</span>
+
+        <a href="/logout" class="logout-btn">
+            Logout
         </a>
     </div>
+
+</div>
 
     <div class="cards">
 

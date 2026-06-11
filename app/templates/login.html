@@ -7,29 +7,74 @@
 
 <body>
 
-<div class="login-container">
+    <!-- Top Fabric Border -->
+    <div class="top-banner"></div>
 
-    <h1>Fabric Inventory</h1>
+    <!-- Full Screen Sliding Fabric Background -->
+    <div class="carousel-background">
 
-    <form method="post" action="/login">
+        <div class="carousel-track">
 
-        <div class="input-group">
-            <label>Username</label>
-            <input type="text" name="username" required>
+            <img src="/static/cotton.jpg">
+            <img src="/static/denim.jpg">
+            <img src="/static/linen.jpg">
+            <img src="/static/silk.jpg">
+            <img src="/static/kalamkari.jpg">
+
+            <!-- Duplicate Images for Infinite Loop -->
+            <img src="/static/cotton.jpg">
+            <img src="/static/denim.jpg">
+            <img src="/static/linen.jpg">
+            <img src="/static/silk.jpg">
+            <img src="/static/kalamkari.jpg">
+
         </div>
 
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" name="password" required>
+    </div>
+
+    <!-- Login Card -->
+    <div class="main-content">
+
+        <div class="login-container">
+
+            <h1>Textile Inventory</h1>
+
+            <p class="subtitle">
+                Fabric & Material Management System
+            </p>
+
+            <form method="post" action="/login">
+
+                <div class="input-group">
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
         </div>
 
-        <button type="submit">
-            Login
-        </button>
+    </div>
 
-    </form>
-
-</div>
+    <!-- Bottom Fabric Border -->
+    <div class="bottom-banner"></div>
 
 </body>
 </html>

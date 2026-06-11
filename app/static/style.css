@@ -1,76 +1,231 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-container {
-    background: white;
-    padding: 40px;
-    width: 400px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
-}
-
-.login-container h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #005fa3;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    background:#f4f6f8;
+    background:#f7f5f0;
+    min-height:100vh;
+    overflow:hidden;
+    position:relative;
 }
 
-h1{
+/* =========================
+   TOP FABRIC BORDER
+========================= */
+
+.top-banner{
+    width:100%;
+    height:120px;
+
+    background-image:url("/static/fabric-pattern.jpeg");
+    background-size:cover;
+    background-position:center;
+
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:20;
+}
+
+/* =========================
+   BOTTOM FABRIC BORDER
+========================= */
+
+.bottom-banner{
+    width:100%;
+    height:120px;
+
+    background-image:url("/static/fabric-pattern.jpeg");
+    background-size:cover;
+    background-position:center;
+
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index:20;
+}
+
+/* =========================
+   FULL SCREEN FABRIC SLIDER
+========================= */
+
+.carousel-background{
+
+    position:absolute;
+
+    top:120px;
+    bottom:120px;
+
+    left:0;
+    right:0;
+
+    overflow:hidden;
+}
+
+.carousel-track{
+
+    display:flex;
+
+    height:100%;
+
+    width:max-content;
+
+    animation:slide 30s linear infinite;
+}
+
+.carousel-track img{
+
+    width:420px;
+
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0.85;
+}
+
+/* =========================
+   SLIDE ANIMATION
+========================= */
+
+@keyframes slide{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+}
+
+/* =========================
+   LOGIN CARD POSITIONING
+========================= */
+
+.main-content{
+
+    position:relative;
+
+    z-index:50;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+/* =========================
+   GLASS LOGIN CARD
+========================= */
+
+.login-container{
+
+    width:420px;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.35);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.5);
+
+    box-shadow:
+        0px 10px 30px rgba(0,0,0,0.25);
+}
+
+.login-container h1{
+
     text-align:center;
+
+    color:#2d4059;
+
+    margin-bottom:10px;
 }
 
-body {
-    background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.subtitle{
+
+    text-align:center;
+
+    color:#444;
+
+    margin-bottom:25px;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#222;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid rgba(255,255,255,0.8);
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,0.9);
+}
+
+.input-group input:focus{
+
+    outline:none;
+
+    border-color:#2d4059;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2d4059;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    background:#1e2d40;
 }
