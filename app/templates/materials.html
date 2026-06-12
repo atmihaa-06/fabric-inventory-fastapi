@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Material Register</title>
+    <link rel="stylesheet" href="/static/materials.css">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="top-bar">
+        <a href="/admin" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <h1>Material Register</h1>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Fabric</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+
+        {% for material in materials %}
+
+        <tr>
+            <td>{{ material.id }}</td>
+            <td>{{ material.product_name }}</td>
+            <td>{{ material.category }}</td>
+            <td>{{ material.fabric_used }}</td>
+            <td>{{ material.size }}</td>
+            <td>{{ material.price }}</td>
+            <td>{{ material.stock }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

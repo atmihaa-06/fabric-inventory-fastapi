@@ -1,0 +1,170 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    background:#edf6f4;
+
+    overflow:hidden;
+}
+
+/* Background Pattern */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:url("/static/bg4.png");
+    background-repeat:repeat;
+    background-size:240px;
+
+    opacity:0.18;
+
+    z-index:-1;
+}
+
+/* Register Card */
+
+.login-box{
+
+    width:500px;
+
+    background:rgba(255,255,255,0.95);
+
+    backdrop-filter:blur(10px);
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+    text-align:center;
+}
+
+/* Heading */
+
+h1{
+    color:#1f6f67;
+
+    font-size:52px;
+
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#55706c;
+
+    margin-bottom:30px;
+
+    font-size:16px;
+}
+
+/* Labels */
+
+label{
+
+    display:block;
+
+    text-align:left;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#2d4f4b;
+}
+
+/* Inputs */
+
+input,
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f3f7f6;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+/* Button */
+
+button{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#1f6f67;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    background:#174f49;
+
+    transform:translateY(-2px);
+}
+
+/* Login Link */
+
+.login-link{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#444;
+}
+
+.login-link a{
+
+    color:#1f6f67;
+
+    font-weight:600;
+
+    text-decoration:none;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+}

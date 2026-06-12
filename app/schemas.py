@@ -54,3 +54,18 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class MaterialCreate(BaseModel):
+    product_name: str
+    category: str
+    fabric_used: str
+    size: str
+    price: float
+    stock: int
+
+
+class MaterialResponse(MaterialCreate):
+    id: int
+
+    class Config:
+        from_attributes = True

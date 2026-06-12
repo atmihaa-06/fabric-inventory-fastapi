@@ -54,3 +54,20 @@ class User(Base):
         "Role",
         back_populates="users"
     )
+
+class Material(Base):
+    __tablename__ = "materials"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    product_name = Column(String, nullable=False)
+
+    category = Column(String, nullable=False)
+
+    fabric_used = Column(String, nullable=False)
+
+    size = Column(String)
+
+    price = Column(Float, nullable=False)
+
+    stock = Column(Integer, nullable=False)

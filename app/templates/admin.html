@@ -53,6 +53,32 @@
             </ul>
         </div>
 
+        <div class="card">
+
+    <h2>Material Register Upload</h2>
+
+    <form
+    action="/materials/upload-excel"
+    method="post"
+    enctype="multipart/form-data"
+>
+
+        <input
+            type="file"
+            name="file"
+            accept=".xlsx,.xls"
+            required
+        >
+
+        <button type="submit">
+            Upload Excel
+        </button>
+
+    </form>
+    
+
+</div>
+
     </div>
 
 </div>
