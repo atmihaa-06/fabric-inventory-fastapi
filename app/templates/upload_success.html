@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Successful</title>
+    <link rel="stylesheet" href="/static/upload_success.css">
+</head>
+
+<body>
+
+<div class="success-card">
+
+    <h1>✔ Upload Successful</h1>
+
+    <p>
+        Material Excel imported successfully.
+    </p>
+
+    <div class="stats">
+        <p><strong>Imported:</strong> {{ imported }}</p>
+        <p><strong>Skipped:</strong> {{ skipped }}</p>
+    </div>
+
+    <div class="buttons">
+
+        <a href="/materials/view">
+            <button>View Records</button>
+        </a>
+
+        <a href="/admin">
+            <button>Back to Dashboard</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

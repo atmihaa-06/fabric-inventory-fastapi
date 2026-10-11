@@ -1,0 +1,199 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body{
+    min-height:100vh;
+    position:relative;
+    background:#faf7fc;
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:url("/static/bg1.jpg");
+
+    background-repeat:repeat;
+
+    background-size:180px;
+
+    opacity:0.22;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    position:relative;
+    z-index:10;
+
+    width:90%;
+    margin:auto;
+
+    padding:40px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:50px;
+}
+
+.header h1{
+    font-size:60px;
+    font-weight:700;
+
+    color:#7b3fa0;
+}
+
+/* =========================
+   USER BOX
+========================= */
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:white;
+
+    padding:16px 22px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 0 18px rgba(123,63,160,0.18),
+        0 4px 12px rgba(0,0,0,0.08);
+}
+
+.user-box span{
+    color:#7b3fa0;
+    font-size:18px;
+    font-weight:600;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.logout-btn{
+    text-decoration:none;
+
+    background:#7b3fa0;
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#633183;
+}
+
+/* =========================
+   CARDS LAYOUT
+========================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(123,63,160,0.15);
+
+    box-shadow:
+        0 0 20px rgba(123,63,160,0.12),
+        0 0 40px rgba(123,63,160,0.06),
+        0 4px 15px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 30px rgba(123,63,160,0.22),
+        0 0 60px rgba(123,63,160,0.12),
+        0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   CARD TITLES
+========================= */
+
+.card h2{
+    color:#7b3fa0;
+
+    margin-bottom:20px;
+
+    font-size:32px;
+}
+
+/* =========================
+   LIST ITEMS
+========================= */
+
+.card ul{
+    list-style:none;
+}
+
+.card li{
+    padding:12px 0;
+
+    border-bottom:1px solid #e9ddf0;
+
+    font-size:18px;
+}
+
+/* =========================
+   LINKS HOVER EFFECT
+========================= */
+
+.card li:hover{
+    color:#7b3fa0;
+    cursor:pointer;
+    padding-left:5px;
+    transition:0.2s;
+}

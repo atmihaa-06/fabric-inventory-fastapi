@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+    <div class="title-section">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+    <div class="user-box">
+        <span>Welcome, {{username}}</span>
+
+        <a href="/logout">
+            <button class="logout-btn">Logout</button>
+        </a>
+    </div>
+
+</div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>Inventory</h2>
+            <ul>
+                <li>View All Fabrics</li>
+                <li>Add Fabric</li>
+                <li>Update Fabric</li>
+                <li>Delete Fabric</li>
+                <li>Update Stock</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Sales Module</h2>
+            <ul>
+                <li>View Sales Orders</li>
+                <li>Sales Reports</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Purchase Module</h2>
+            <ul>
+                <li>Supplier Management</li>
+                <li>Purchase Records</li>
+            </ul>
+        </div>
+
+        <div class="card">
+
+    <h2>Material Register Upload</h2>
+
+    <form
+    action="/materials/upload-excel"
+    method="post"
+    enctype="multipart/form-data"
+>
+
+        <input
+            type="file"
+            name="file"
+            accept=".xlsx,.xls"
+            required
+        >
+
+        <button type="submit">
+            Upload Excel
+        </button>
+
+    </form>
+    
+
+</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>-

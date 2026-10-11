@@ -1,0 +1,171 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    position:relative;
+    background:#efe9dd;
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:url("/static/bg-pattern.jpg");
+    background-repeat:repeat;
+    background-size:320px;
+
+    opacity:0.4;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+.container{
+    position:relative;
+    z-index:10;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    padding:30px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    color:#2c3e50;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#666;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.card h2{
+    margin-bottom:15px;
+    color:#0077cc;
+}
+
+.card ul{
+    list-style:none;
+}
+
+.card ul li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:40px;
+    padding:20px 10px;
+}
+
+.title-section h1{
+    color:#2c3e50;
+    font-size:52px;
+    font-weight:700;
+}
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:white;
+
+    padding:12px 20px;
+
+    border-radius:14px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+
+    border:1px solid rgba(0,0,0,0.05);
+}
+
+.user-box span{
+    color:#555;
+    font-weight:600;
+}
+
+.logout-btn{
+    border:none;
+
+    background:#2c3e50;
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+}
+
+.logout-btn:hover{
+    background:#1b2d42;
+}
+.upload-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.upload-form input[type="file"]{
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.upload-form button{
+    background:#2d4059;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.upload-form button:hover{
+    background:#1e2d40;
+}
+
+.card form{
+    margin-top:20px;
+}
+.card input[type="file"]{
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.card button{
+    margin-top:5px;
+}
