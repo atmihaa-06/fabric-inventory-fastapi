@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Fabric</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Add Fabric</h1>
+
+    <form action="/add-fabric" method="post">
+
+        <p>
+            <label>Fabric Name</label><br>
+            <input type="text" name="fabric_name" required>
+        </p>
+
+        <p>
+            <label>Fabric Type</label><br>
+            <input type="text" name="fabric_type" required>
+        </p>
+
+        <p>
+            <label>Color</label><br>
+            <input type="text" name="color">
+        </p>
+
+        <p>
+            <label>GSM</label><br>
+            <input type="number" step="0.01" name="gsm" required>
+        </p>
+
+        <p>
+            <label>Price Per Meter</label><br>
+            <input type="number" step="0.01" name="price_per_meter" required>
+        </p>
+
+        <p>
+            <label>Available Stock</label><br>
+            <input type="number" name="available_stock" required>
+        </p>
+
+        <p>
+            <label>Supplier Name</label><br>
+            <input type="text" name="supplier_name">
+        </p>
+
+        <button type="submit">
+            Save Fabric
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if role_id == 1 %}
+<a href="/admin">
+    <button>Back to Dashboard</button>
+</a>
+
+{% elif role_id == 2 %}
+<a href="/sales">
+    <button>Back to Dashboard</button>
+</a>
+
+{% elif role_id == 3 %}
+<a href="/purchase">
+    <button>Back to Dashboard</button>
+</a>
+{% endif %}
+
+</div>
+
+</body>
+</html>

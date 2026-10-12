@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey,Date
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -71,3 +71,44 @@ class Material(Base):
     price = Column(Float, nullable=False)
 
     stock = Column(Integer, nullable=False)
+
+class Supplier(Base):
+    __tablename__ = "suppliers"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    supplier_name = Column(String, nullable=False)
+
+    contact_person = Column(String)
+
+    phone = Column(String)
+
+    email = Column(String)
+
+    address = Column(String)
+
+class PurchaseRecord(Base):
+    __tablename__ = "purchase_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    supplier_name = Column(String, nullable=False)
+
+    fabric_name = Column(String, nullable=False)
+
+    quantity = Column(Integer, nullable=False)
+
+    purchase_price = Column(Float, nullable=False)
+
+    purchase_date = Column(String, nullable=False)
+
+class SalesOrder(Base):
+    __tablename__ = "sales_orders"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    customer_name = Column(String)
+    fabric_name = Column(String)
+    quantity = Column(Integer)
+    selling_price = Column(Float)
+    order_date = Column(Date)
