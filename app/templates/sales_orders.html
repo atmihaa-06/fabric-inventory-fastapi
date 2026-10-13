@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Orders</title>
+    <link rel="stylesheet" href="/static/sales-pages.css">
+</head>
+
+<body>
+<div class="page">
+
+    <!-- Header -->
+    <header class="topbar">
+        <div>
+            <h1>Sales Orders</h1>
+            <p>All recorded customer orders</p>
+        </div>
+
+        <nav>
+            <a class="btn secondary" href="/sales">Dashboard</a>
+            <a class="btn" href="/add-sales">Add Order</a>
+        </nav>
+    </header>
+
+    <!-- Sales Orders Table -->
+    <section class="panel">
+        <h2>Order Records</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Fabric</th>
+                        <th>Quantity</th>
+                        <th>Price / Unit</th>
+                        <th>Total Value</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for sale in sales %}
+                    <tr>
+                        <td>{{ sale.id }}</td>
+                        <td>{{ sale.customer_name }}</td>
+                        <td>{{ sale.fabric_name }}</td>
+                        <td>{{ sale.quantity }}</td>
+
+                        <td>
+                            ₹{{ "%.2f"|format(sale.selling_price or 0) }}
+                        </td>
+
+                        <td>
+                            ₹{{ "%.2f"|format((sale.selling_price or 0) * (sale.quantity or 0)) }}
+                        </td>
+
+                        <td>{{ sale.order_date or "—" }}</td>
+
+                        <td>
+                            <form
+                                action="/delete-sales/{{ sale.id }}"
+                                method="post"
+                                style="display:inline"
+                                onsubmit="return confirm('Delete this sales order? Stock will be restored.');"
+                            >
+                                <button type="submit" class="btn">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% else %}
+                    <tr>
+                        <td colspan="8" class="empty">
+                            No sales orders found. Select Add Order to create one.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

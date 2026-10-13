@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Records</title>
+    <style>
+    
+/* =================================
+   PURCHASE RECORDS — PINK THEME
+   ================================= */
+
+:root {
+    --primary: #be185d;
+    --primary-dark: #9d174d;
+    --primary-light: #fce7f3;
+    --background: #fff7fb;
+    --surface: #ffffff;
+    --text: #3b1730;
+    --muted: #806477;
+    --border: #f2d7e5;
+    --danger: #dc2626;
+    --shadow: 0 8px 28px rgba(157, 23, 77, 0.09);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Header */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.top h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 750;
+    letter-spacing: -0.6px;
+}
+
+.top > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+a.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 11px 17px;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 650;
+    transition: 0.2s ease;
+}
+
+a.button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(190, 24, 93, 0.2);
+}
+
+a.button:focus-visible,
+td a:focus-visible {
+    outline: 3px solid #f9a8d4;
+    outline-offset: 3px;
+}
+
+/* Purchase table */
+
+table {
+    width: 100%;
+    margin-top: 25px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    border-spacing: 0;
+    border-collapse: separate;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+thead {
+    background: var(--primary-light);
+}
+
+th {
+    padding: 16px 14px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 750;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #f7e8f0;
+    color: var(--text);
+    text-align: left;
+    line-height: 1.5;
+}
+
+tbody tr {
+    background: #ffffff;
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #fff5fa;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td:first-child {
+    color: var(--muted);
+    font-weight: 650;
+}
+
+/* Edit and Delete actions */
+
+.actions {
+    white-space: nowrap;
+}
+
+.actions a {
+    display: inline-block;
+    margin: 3px 10px 3px 0;
+    color: var(--primary);
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.actions a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.actions a.delete {
+    color: var(--danger);
+}
+
+.actions a.delete:hover {
+    color: #991b1b;
+}
+
+/* Empty state */
+
+.empty {
+    padding: 35px 15px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .container {
+        padding: 22px 16px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 13px 12px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    .container {
+        padding: 18px 12px;
+        border-radius: 14px;
+    }
+
+    .top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .top > div {
+        width: 100%;
+    }
+
+    a.button {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    table {
+        margin-top: 18px;
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 12px 10px;
+    }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <h1>Purchase Records</h1>
+        <div>
+            <a class="button" href="/add-purchase">+ Add Purchase</a>
+            <a class="button" href="/purchase">Dashboard</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supplier</th>
+                <th>Fabric</th>
+                <th>Quantity</th>
+                <th>Unit Purchase Price</th>
+                <th>Purchase Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.id }}</td>
+                <td>{{ purchase.supplier_name }}</td>
+                <td>{{ purchase.fabric_name }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td>{{ "%.2f"|format(purchase.purchase_price) }}</td>
+                <td>{{ purchase.purchase_date }}</td>
+                <td class="actions">
+                    <a href="/edit-purchase/{{ purchase.id }}">Edit</a>
+                    <a class="delete"
+                       href="/delete-purchase/{{ purchase.id }}"
+                       onclick="return confirm('Delete this purchase record?')">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td class="empty" colspan="7">No purchase records found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

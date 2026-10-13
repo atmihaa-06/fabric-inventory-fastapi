@@ -1,0 +1,374 @@
+
+/* ==========================================
+   FABRIC INVENTORY — SIGN UP PAGE
+   Animated background + responsive form
+   Login page and backend remain unchanged
+========================================== */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    isolation: isolate;
+    padding: 24px 3.5%;
+    overflow-x: hidden;
+
+    background: #07143b;
+}
+
+/* ==========================================
+   ANIMATED SIGN-UP BACKGROUND
+========================================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-color: #07143b;
+    background-image: url("/static/signup-bg.gif");
+    background-position: left center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+/* ==========================================
+   REGISTRATION CONTAINER
+========================================== */
+
+.login-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 480px;
+    margin: auto 0;
+
+    transform: none;
+}
+
+/* ==========================================
+   REGISTRATION CARD
+========================================== */
+
+.login-box {
+    width: 100%;
+    padding: 30px 32px;
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.22),
+        0 4px 14px rgba(45, 64, 89, 0.10);
+
+    text-align: center;
+
+    animation: cardAppear 0.65s ease both;
+}
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.login-box h1 {
+    margin-bottom: 10px;
+
+    color: #2d4059;
+    font-size: clamp(29px, 3vw, 35px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.login-box h1::after {
+    content: "";
+    display: block;
+
+    width: 58px;
+    height: 3px;
+    margin: 13px auto 0;
+
+    border-radius: 10px;
+    background: #2d4059;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.login-box form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.login-box label {
+    display: block;
+    margin: 13px 0 7px;
+
+    color: #2d4059;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+/* Input fields and role selector */
+
+.login-box input,
+.login-box select {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+
+    border: 1px solid rgba(45, 64, 89, 0.17);
+    border-radius: 10px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.96);
+    color: #27364a;
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.login-box input::placeholder {
+    color: #929ba5;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+    border-color: #2d4059;
+    background: #ffffff;
+
+    box-shadow: 0 0 0 4px rgba(45, 64, 89, 0.10);
+}
+
+.login-box select {
+    cursor: pointer;
+}
+
+/* ==========================================
+   REGISTER BUTTON
+========================================== */
+
+.login-box button {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    margin-top: 22px;
+    padding: 12px 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #2d4059;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 16px rgba(45, 64, 89, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-box button:hover {
+    background: #1e2d40;
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 22px rgba(45, 64, 89, 0.25);
+}
+
+.login-box button:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   LOGIN LINK
+========================================== */
+
+.login-box p {
+    margin-top: 20px;
+
+    color: #4c5664;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.login-box p a {
+    display: inline-block;
+    margin-left: 4px;
+
+    color: #2d4059;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.login-box p a:hover {
+    color: #92703f;
+    text-decoration: underline;
+}
+
+/* Keyboard accessibility */
+
+.login-box button:focus-visible,
+.login-box a:focus-visible {
+    outline: 3px solid #b38a55;
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   CARD ENTRANCE ANIMATION
+========================================== */
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 900px) {
+    body {
+        justify-content: center;
+        padding: 24px 20px;
+    }
+
+    .login-container {
+        max-width: 460px;
+        margin: auto;
+    }
+
+    body::before {
+        background-position: left center;
+        background-size: auto 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px 14px;
+    }
+
+    .login-container {
+        max-width: 100%;
+    }
+
+    .login-box {
+        padding: 26px 22px;
+        border-radius: 18px;
+    }
+
+    .login-box h1 {
+        font-size: 30px;
+    }
+
+    .login-box form {
+        margin-top: 18px;
+    }
+
+    .login-box p {
+        font-size: 13px;
+    }
+}
+
+/* ==========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .login-box {
+        animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
+/* ==========================================
+   MAGICAL CURSOR SNOWFALL
+========================================== */
+
+.cursor-snowflake {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    user-select: none;
+
+    color: #ffffff;
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.95),
+        0 0 12px rgba(177, 218, 255, 0.8);
+
+    opacity: 0;
+    line-height: 1;
+
+    animation: cursorSnowFall 1.5s ease-out forwards;
+}
+
+@keyframes cursorSnowFall {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate3d(var(--snow-drift), 95px, 0)
+            rotate(180deg)
+            scale(0.8);
+    }
+}

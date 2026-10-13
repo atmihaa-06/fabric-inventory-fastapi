@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="/static/sales-pages.css">
+</head>
+<body>
+<div class="page">
+    <header class="topbar">
+        <div>
+            <h1>Sales Report</h1>
+            <p>Summary of recorded sales activity</p>
+        </div>
+        <a class="btn" href="/sales">Back to Dashboard</a>
+    </header>
+
+    <section class="stats">
+        <article class="stat-card">
+            <span>Total Orders</span>
+            <strong>{{ total_orders }}</strong>
+        </article>
+        <article class="stat-card">
+            <span>Total Revenue</span>
+            <strong>₹{{ "%.2f"|format(total_revenue or 0) }}</strong>
+        </article>
+    </section>
+
+    <section class="panel">
+        <h2>Sales Breakdown</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Fabric</th>
+                        <th>Quantity</th>
+                        <th>Price / Unit</th>
+                        <th>Order Total</th>
+                        <th>Order Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr>
+                        <td>{{ sale.id }}</td>
+                        <td>{{ sale.customer_name }}</td>
+                        <td>{{ sale.fabric_name }}</td>
+                        <td>{{ sale.quantity }}</td>
+                        <td>₹{{ "%.2f"|format(sale.selling_price or 0) }}</td>
+                        <td>₹{{ "%.2f"|format((sale.selling_price or 0) * (sale.quantity or 0)) }}</td>
+                        <td>{{ sale.order_date or "—" }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="empty">No sales records available yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p class="note">Revenue is calculated from the recorded selling price multiplied by quantity.</p>
+    </section>
+</div>
+</body>
+</html>

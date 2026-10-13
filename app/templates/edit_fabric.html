@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Fabric | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="container fabric-form-page">
+
+    <div class="form-header">
+        <span class="eyebrow">FABRIC INVENTORY</span>
+        <h1>Edit Fabric</h1>
+        <p>Update the details and stock information for this fabric.</p>
+    </div>
+
+    <form action="/edit-fabric/{{ fabric.id }}" method="post"
+          class="fabric-form">
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="fabric_name">Fabric Name *</label>
+                <input type="text" id="fabric_name" name="fabric_name"
+                       value="{{ fabric.fabric_name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fabric_type">Fabric Type *</label>
+                <input type="text" id="fabric_type" name="fabric_type"
+                       value="{{ fabric.fabric_type }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" id="color" name="color"
+                       value="{{ fabric.color or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="gsm">GSM *</label>
+                <input type="number" step="0.01" id="gsm" name="gsm"
+                       min="0" value="{{ fabric.gsm }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price_per_meter">Price Per Meter *</label>
+                <input type="number" step="0.01" id="price_per_meter"
+                       name="price_per_meter" min="0"
+                       value="{{ fabric.price_per_meter }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="available_stock">Available Stock *</label>
+                <input type="number" id="available_stock"
+                       name="available_stock" min="0"
+                       value="{{ fabric.available_stock }}" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="supplier_name">Supplier Name</label>
+                <input type="text" id="supplier_name" name="supplier_name"
+                       value="{{ fabric.supplier_name or '' }}">
+            </div>
+        </div>
+
+        <button type="submit" class="primary-btn">Update Fabric</button>
+    </form>
+
+    <div class="back-section">
+        <a class="back-btn" href="/view-fabrics">← Back to Fabrics</a>
+    </div>
+
+</div>
+
+</body>
+</html>

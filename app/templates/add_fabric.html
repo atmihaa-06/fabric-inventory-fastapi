@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fabric | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="container fabric-form-page">
+
+    <div class="form-header">
+        <span class="eyebrow">FABRIC INVENTORY</span>
+        <h1>Add New Fabric</h1>
+        <p>Enter fabric details to add an item to your inventory.</p>
+    </div>
+
+    <form action="/add-fabric" method="post" class="fabric-form">
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="fabric_name">Fabric Name *</label>
+                <input type="text" id="fabric_name" name="fabric_name"
+                       placeholder="e.g. Cotton" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fabric_type">Fabric Type *</label>
+                <input type="text" id="fabric_type" name="fabric_type"
+                       placeholder="e.g. Woven" required>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" id="color" name="color"
+                       placeholder="e.g. Rose Pink">
+            </div>
+
+            <div class="form-group">
+                <label for="gsm">GSM *</label>
+                <input type="number" step="0.01" id="gsm" name="gsm"
+                       min="0" placeholder="Fabric weight" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price_per_meter">Price Per Meter *</label>
+                <input type="number" step="0.01" id="price_per_meter"
+                       name="price_per_meter" min="0"
+                       placeholder="Enter price" required>
+            </div>
+
+            <div class="form-group">
+                <label for="available_stock">Available Stock *</label>
+                <input type="number" id="available_stock"
+                       name="available_stock" min="0"
+                       placeholder="Enter stock quantity" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="supplier_name">Supplier Name</label>
+                <input type="text" id="supplier_name" name="supplier_name"
+                       placeholder="Enter supplier name">
+            </div>
+        </div>
+
+        <button type="submit" class="primary-btn">Save Fabric</button>
+    </form>
+
+    <div class="back-section">
+        {% if role_id == 1 %}
+            <a class="back-btn" href="/admin">← Back to Dashboard</a>
+        {% elif role_id == 2 %}
+            <a class="back-btn" href="/sales">← Back to Dashboard</a>
+        {% elif role_id == 3 %}
+            <a class="back-btn" href="/purchase">← Back to Dashboard</a>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>

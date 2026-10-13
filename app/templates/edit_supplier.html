@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Supplier | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/supplier-forms.css">
+</head>
+<body>
+
+<main class="page">
+    <section class="form-card">
+
+        <div class="heading">
+            <span class="eyebrow">SUPPLIER MANAGEMENT</span>
+            <h1>Edit Supplier</h1>
+            <p>Update the supplier's contact and address details.</p>
+        </div>
+
+        <form action="/edit-supplier/{{ supplier.id }}" method="post">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="supplier_name">Supplier Name *</label>
+                    <input type="text" id="supplier_name" name="supplier_name"
+                           value="{{ supplier.supplier_name }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_person">Contact Person</label>
+                    <input type="text" id="contact_person" name="contact_person"
+                           value="{{ supplier.contact_person or '' }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone"
+                           value="{{ supplier.phone or '' }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email"
+                           value="{{ supplier.email or '' }}">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" rows="3">{{ supplier.address or '' }}</textarea>
+                </div>
+
+            </div>
+
+            <button type="submit" class="submit-btn">Update Supplier</button>
+        </form>
+
+        <a href="/view-suppliers" class="back-link">
+            ← Back to Suppliers
+        </a>
+
+    </section>
+</main>
+
+</body>
+</html>

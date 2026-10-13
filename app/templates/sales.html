@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/sales-dashboard.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div class="header-content">
+            <span class="eyebrow">FABRIC INVENTORY MANAGEMENT</span>
+            <h1>Sales Dashboard</h1>
+            <p>Manage customer orders, check stock, and review sales performance.</p>
+        </div>
+
+        <div class="user-box">
+            <span class="welcome-text">Welcome, {{ username }}</span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <main class="cards">
+
+        <section class="card">
+            <div class="card-icon">🧵</div>
+            <h2>Fabric Management</h2>
+            <p>Browse available fabrics and check inventory quantities.</p>
+            <ul>
+                <li>
+                    <a href="/view-fabrics">
+                        <span>View Fabrics</span><span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/fabrics/">
+                        <span>Check Available Stock</span><span class="arrow">→</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <div class="card-icon">🛍️</div>
+            <h2>Sales Operations</h2>
+            <p>Create sales orders and manage existing customer orders.</p>
+            <ul>
+                <li>
+                    <a href="/add-sales">
+                        <span>Add Sales Order</span><span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/view-sales">
+                        <span>View Sales Orders</span><span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/sales">
+                        <span>Sales Dashboard</span><span class="arrow">→</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <div class="card-icon">📊</div>
+            <h2>Reports &amp; Analytics</h2>
+            <p>Review recorded sales and monitor business performance.</p>
+            <ul>
+                <li>
+                    <a href="/sales-report">
+                        <span>Sales Reports</span><span class="arrow">→</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Fabric Inventory Management System</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

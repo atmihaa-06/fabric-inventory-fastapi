@@ -1,0 +1,235 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body{
+    min-height:100vh;
+    position:relative;
+    background:#fff8f6;
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background-image:url("/static/bg.jpg");
+    background-repeat:repeat;
+    background-size:220px;
+
+    opacity:0.5;
+
+    pointer-events:none;
+    z-index:0;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    position:relative;
+    z-index:10;
+
+    width:90%;
+    margin:auto;
+
+    padding:40px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:50px;
+}
+
+.header h1{
+    font-size:60px;
+    font-weight:700;
+
+    color:#d35d7d;
+}
+
+/* =========================
+   USER BOX
+========================= */
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:white;
+
+    padding:16px 22px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 0 18px rgba(255,182,193,0.25),
+        0 4px 12px rgba(0,0,0,0.08);
+}
+
+.user-box span{
+    color:#d35d7d;
+    font-size:18px;
+    font-weight:600;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.logout-btn{
+    text-decoration:none;
+
+    background:#d35d7d;
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#bf4f6d;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+.card{
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,182,193,0.25);
+
+    box-shadow:
+        0 0 20px rgba(255,182,193,0.18),
+        0 0 40px rgba(255,182,193,0.08),
+        0 4px 15px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 30px rgba(255,182,193,0.35),
+        0 0 60px rgba(255,182,193,0.15),
+        0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card h2{
+    color:#d35d7d;
+    margin-bottom:20px;
+
+    font-size:32px;
+}
+
+/* =========================
+   LIST ITEMS
+========================= */
+
+.card ul{
+    list-style:none;
+}
+
+.card li{
+    padding:12px 0;
+
+    border-bottom:1px solid #f0d9df;
+
+    font-size:18px;
+}
+
+/* Clickable Sales Operations */
+
+.operations li {
+    list-style: none;
+    padding: 0;
+}
+
+.operations li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    color: #222;
+    text-decoration: none;
+    border-bottom: 1px solid #f0d9df;
+    font-size: 18px;
+    transition: color 0.2s ease, padding 0.2s ease;
+}
+
+.operations li a:hover {
+    color: #d35d7d;
+    padding-left: 10px;
+}
+
+.operations .arrow {
+    color: #d35d7d;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.operations li a:hover .arrow {
+    opacity: 1;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .header h1 {
+        font-size: 40px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .user-box {
+        flex-wrap: wrap;
+    }
+}

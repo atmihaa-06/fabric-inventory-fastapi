@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Dashboard | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/purchase.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Dashboard Header -->
+    <header class="header">
+        <div class="header-content">
+            <span class="eyebrow">FABRIC INVENTORY MANAGEMENT</span>
+            <h1>Purchase Dashboard</h1>
+            <p>Manage incoming stock, fabric details, and supplier purchases.</p>
+        </div>
+
+        <div class="user-box">
+            <span class="welcome-text">
+                Welcome, {{ username }}
+            </span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <!-- Dashboard Cards -->
+    <main class="cards">
+
+        <!-- Fabric Management -->
+        <section class="card">
+            <div class="card-icon">🧵</div>
+            <h2>Fabric Management</h2>
+            <p>Maintain fabric details and monitor your inventory.</p>
+
+            <ul>
+                <li>
+                    <a href="/view-fabrics">
+                        <span>View Fabrics &amp; Stock</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/add-fabric">
+                        <span>Add New Fabric</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/view-fabrics">
+    <span>Browse Fabric Inventory</span>
+    <span class="arrow">→</span>
+</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Purchase Operations -->
+        <section class="card">
+            <div class="card-icon">📦</div>
+            <h2>Purchase Operations</h2>
+            <p>Record incoming purchases and review purchase history.</p>
+
+            <ul>
+                <li>
+                    <a href="/add-purchase">
+                        <span>Add Purchase Record</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/view-purchases">
+                        <span>View Purchase Records</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/purchase">
+                        <span>Purchase Dashboard</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Supplier Management -->
+        <section class="card">
+            <div class="card-icon">🤝</div>
+            <h2>Supplier Management</h2>
+            <p>Manage supplier details and maintain supplier records.</p>
+
+            <ul>
+                <li>
+                    <a href="/view-suppliers">
+                        <span>View Suppliers</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/add-supplier">
+                        <span>Add Supplier</span>
+                        <span class="arrow">→</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Fabric Inventory Management System</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

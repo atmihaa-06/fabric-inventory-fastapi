@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register User</title>
+    <link rel="stylesheet" href="/static/register.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <h1>Create Account</h1>
+
+        <form action="/register" method="post">
+
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required>
+
+            <label>Role</label>
+
+            <select name="role_id" required>
+
+                <option value="">Select Role</option>
+
+                <option value="2">Sales</option>
+
+                <option value="3">Purchase</option>
+
+
+            </select>
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="/login">Login Here</a>
+        </p>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', path='snowfall.js') }}"></script>
+
+</body>
+</html>

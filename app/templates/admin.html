@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+
+<body>
+<div class="container">
+
+    <header class="header">
+        <div class="title-section">
+            <h1>Fabric Inventory</h1>
+            <p>Administrator Dashboard</p>
+        </div>
+
+        <div class="user-box">
+            <span>Welcome, {{ username }}!</span>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <main class="cards">
+
+        <section class="card">
+            <h2>Inventory Management</h2>
+            <p>Manage fabrics and available stock.</p>
+
+            <ul>
+                <li><a href="/view-fabrics">View All Fabrics</a></li>
+                <li><a href="/add-fabric">Add New Fabric</a></li>
+                <li><a href="/view-fabrics">Edit or Delete Fabrics</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Sales Management</h2>
+            <p>Manage customer orders and sales records.</p>
+
+            <ul>
+                <li><a href="/view-sales">View Sales Orders</a></li>
+                <li><a href="/add-sales">Add Sales Order</a></li>
+                <li><a href="/sales-report">View Sales Report</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Purchase Management</h2>
+            <p>Manage suppliers and incoming purchases.</p>
+
+            <ul>
+                <li><a href="/view-suppliers">Manage Suppliers</a></li>
+                <li><a href="/add-supplier">Add Supplier</a></li>
+                <li><a href="/view-purchases">View Purchase Records</a></li>
+                <li><a href="/add-purchase">Add Purchase Record</a></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Material Register</h2>
+            <p>Import material data from an Excel spreadsheet or view existing records.</p>
+
+            <form action="/materials/upload-excel"
+                  method="post"
+                  enctype="multipart/form-data"
+                  class="upload-form">
+
+                <label for="material-file">Choose Excel file</label>
+                <input id="material-file"
+                       type="file"
+                       name="file"
+                       accept=".xlsx,.xls"
+                       required>
+
+                <button type="submit">Upload Excel</button>
+            </form>
+
+            <p class="card-link">
+                <a href="/materials/view">View Material Register</a>
+            </p>
+        </section>
+
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Sales Order</title>
+    <link rel="stylesheet" href="/static/add_sales.css">
+
+    <style>
+        /* Keep the existing pink design */
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #edc3d7;
+            border-radius: 10px;
+            background: #fffafd;
+            color: #351326;
+            font: inherit;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: #c2185b;
+            box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.10);
+        }
+
+        .stock-info {
+            display: block;
+            margin-top: 8px;
+            color: #866477;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .stock-error {
+            display: block;
+            margin-top: 7px;
+            color: #c2185b;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .stock-info.error {
+            color: #c2185b;
+        }
+
+        .stock-info.success {
+            color: #26734d;
+        }
+    </style>
+</head>
+
+<body>
+<main class="page">
+    <section class="form-card">
+
+        <div class="heading">
+            <span class="eyebrow">SALES MANAGEMENT</span>
+            <h1>Add Sales Order</h1>
+            <p>Enter the details below to record a new customer order.</p>
+        </div>
+
+        <form method="post" id="sales-form">
+
+            <div class="form-group">
+                <label for="customer_name">Customer Name</label>
+                <input
+                    type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    placeholder="Enter customer name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="fabric_name">Fabric Name</label>
+
+                <select id="fabric_name" name="fabric_name" required>
+                    <option value="">Loading fabrics...</option>
+                </select>
+
+                <small id="stock-info" class="stock-info">
+                    Loading current inventory...
+                </small>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="quantity">Quantity (meters)</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min="1"
+                        step="1"
+                        placeholder="Enter quantity"
+                        required
+                    >
+                    <small id="stock-error" class="stock-error"
+                           role="alert"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="selling_price">Selling Price (₹)</label>
+                    <input
+                        type="number"
+                        id="selling_price"
+                        name="selling_price"
+                        min="0"
+                        step="0.01"
+                        placeholder="Enter price"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="order_date">Order Date</label>
+                <input
+                    type="date"
+                    id="order_date"
+                    name="order_date"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+                Add Sales Order
+            </button>
+        </form>
+
+        <a href="/view-sales" class="back-link">
+            <span aria-hidden="true">←</span> Back to Sales Records
+        </a>
+
+    </section>
+</main>
+
+<script>
+    const fabricSelect = document.getElementById("fabric_name");
+    const quantityInput = document.getElementById("quantity");
+    const stockInfo = document.getElementById("stock-info");
+    const stockError = document.getElementById("stock-error");
+    const salesForm = document.getElementById("sales-form");
+    const submitButton = document.getElementById("submit-btn");
+
+    let fabrics = [];
+    let inventoryLoaded = false;
+
+    // Load fabrics from the existing FastAPI inventory endpoint.
+    async function loadFabrics() {
+        fabricSelect.innerHTML =
+            '<option value="">Loading fabrics...</option>';
+
+        try {
+            const response = await fetch("/api/fabrics/");
+
+            if (!response.ok) {
+                throw new Error("Inventory request failed");
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data)) {
+                throw new Error("Invalid inventory response");
+            }
+
+            fabrics = data;
+            inventoryLoaded = true;
+
+            fabricSelect.innerHTML =
+                '<option value="">Select a fabric</option>';
+
+            fabrics.forEach(fabric => {
+                const option = document.createElement("option");
+
+                option.value = fabric.fabric_name;
+                option.textContent =
+                    `${fabric.fabric_name} — ${fabric.available_stock} meters available`;
+
+                if (Number(fabric.available_stock) <= 0) {
+                    option.textContent += " (Out of stock)";
+                }
+
+                fabricSelect.appendChild(option);
+            });
+
+            if (fabrics.length === 0) {
+                stockInfo.textContent = "No fabrics are available.";
+                stockInfo.className = "stock-info error";
+            } else {
+                stockInfo.textContent =
+                    "Select a fabric to see its available stock.";
+                stockInfo.className = "stock-info";
+            }
+        } catch (error) {
+            inventoryLoaded = false;
+            fabricSelect.innerHTML =
+                '<option value="">Unable to load fabrics</option>';
+
+            stockInfo.textContent =
+                "Could not load inventory. Refresh the page and try again.";
+            stockInfo.className = "stock-info error";
+            submitButton.disabled = true;
+        }
+    }
+
+    function getSelectedFabric() {
+        return fabrics.find(
+            fabric => fabric.fabric_name === fabricSelect.value
+        );
+    }
+
+    function checkStock() {
+        stockError.textContent = "";
+
+        const fabric = getSelectedFabric();
+        const quantity = Number(quantityInput.value);
+
+        if (!fabric) {
+            stockInfo.textContent = inventoryLoaded
+                ? "Select a fabric to see its available stock."
+                : "Inventory is not available.";
+            stockInfo.className = inventoryLoaded
+                ? "stock-info"
+                : "stock-info error";
+
+            quantityInput.removeAttribute("max");
+            return false;
+        }
+
+        const available = Number(fabric.available_stock);
+
+        stockInfo.textContent = `Available stock: ${available} meters`;
+        stockInfo.className = available > 0
+            ? "stock-info success"
+            : "stock-info error";
+
+        quantityInput.max = available;
+
+        if (available <= 0) {
+            stockError.textContent = "This fabric is out of stock.";
+            return false;
+        }
+
+        if (quantityInput.value !== "" &&
+            (!Number.isInteger(quantity) || quantity <= 0)) {
+            stockError.textContent =
+                "Enter a whole-number quantity greater than zero.";
+            return false;
+        }
+
+        if (quantityInput.value !== "" && quantity > available) {
+            stockError.textContent =
+                `Only ${available} meters available.`;
+            return false;
+        }
+
+        return true;
+    }
+
+    fabricSelect.addEventListener("change", checkStock);
+    quantityInput.addEventListener("input", checkStock);
+
+    salesForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        if (!inventoryLoaded) {
+            stockError.textContent =
+                "Inventory could not be loaded. Refresh and try again.";
+            return;
+        }
+
+        const fabric = getSelectedFabric();
+
+        if (!fabric) {
+            stockError.textContent = "Please select a valid fabric.";
+            fabricSelect.focus();
+            return;
+        }
+
+        if (!checkStock()) {
+            quantityInput.focus();
+            return;
+        }
+
+        // Refresh inventory before submission to catch stock changes
+        // since the page was opened.
+        submitButton.disabled = true;
+        submitButton.textContent = "Checking stock...";
+
+        try {
+            const response = await fetch("/api/fabrics/");
+
+            if (!response.ok) {
+                throw new Error("Could not refresh inventory");
+            }
+
+            const latestFabrics = await response.json();
+            const latestFabric = latestFabrics.find(
+                item => item.fabric_name === fabric.fabric_name
+            );
+
+            if (!latestFabric) {
+                stockError.textContent =
+                    "This fabric is no longer in the inventory.";
+                await loadFabrics();
+                return;
+            }
+
+            fabrics = latestFabrics;
+
+            const requested = Number(quantityInput.value);
+            const available = Number(latestFabric.available_stock);
+
+            if (requested > available || available <= 0) {
+                stockInfo.textContent =
+                    `Available stock: ${available} meters`;
+                stockInfo.className = "stock-info error";
+                stockError.textContent = available <= 0
+                    ? "This fabric is out of stock."
+                    : `Only ${available} meters available.`;
+                quantityInput.max = available;
+                return;
+            }
+
+            // The backend remains responsible for the final stock
+            // validation and reducing stock when the sale succeeds.
+            salesForm.submit();
+        } catch (error) {
+            stockError.textContent =
+                "Could not refresh stock. Please try again.";
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Add Sales Order";
+        }
+    });
+
+    loadFabrics();
+</script>
+
+</body>
+</html>

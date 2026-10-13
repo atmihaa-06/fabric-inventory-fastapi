@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers</title>
+    <style>
+        
+/* ================================
+   SUPPLIER MANAGEMENT PAGE
+   ================================ */
+
+:root {
+    --primary: #be185d;
+    --primary-dark: #9d174d;
+    --primary-light: #fce7f3;
+    --background: #fff7fb;
+    --surface: #ffffff;
+    --text: #3b1730;
+    --muted: #806477;
+    --border: #f2d7e5;
+    --danger: #dc2626;
+    --shadow: 0 8px 28px rgba(157, 23, 77, 0.09);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.top h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 750;
+    letter-spacing: -0.6px;
+}
+
+.top > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+a.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 11px 17px;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 650;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+a.button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(190, 24, 93, 0.2);
+}
+
+a.button:focus-visible,
+td a:focus-visible {
+    outline: 3px solid #f9a8d4;
+    outline-offset: 3px;
+}
+
+/* Supplier table */
+
+table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+thead {
+    background: var(--primary-light);
+}
+
+th {
+    padding: 16px 14px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 750;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #f7e8f0;
+    color: var(--text);
+    text-align: left;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+tbody tr {
+    background: #ffffff;
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #fff5fa;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td:first-child {
+    color: var(--muted);
+    font-weight: 650;
+}
+
+/* Edit and Delete actions */
+
+td a {
+    display: inline-block;
+    margin: 3px 8px 3px 0;
+    color: var(--primary);
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+td a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+td a[style*="dc2626"] {
+    color: var(--danger) !important;
+}
+
+td a[style*="dc2626"]:hover {
+    color: #991b1b !important;
+}
+
+/* Empty state */
+
+.empty {
+    padding: 35px 15px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Tablet layout */
+
+@media (max-width: 900px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .container {
+        padding: 22px 16px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 13px 12px;
+    }
+}
+
+/* Mobile layout */
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    .container {
+        padding: 18px 12px;
+        border-radius: 14px;
+    }
+
+    .top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .top > div {
+        width: 100%;
+    }
+
+    a.button {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    table {
+        margin-top: 18px;
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 12px 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <h1>Suppliers</h1>
+        <div>
+            <a class="button" href="/add-supplier">+ Add Supplier</a>
+            <a class="button" href="/purchase">Dashboard</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Contact Person</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.supplier_name }}</td>
+                <td>{{ supplier.contact_person or "-" }}</td>
+                <td>{{ supplier.phone or "-" }}</td>
+                <td>{{ supplier.email or "-" }}</td>
+                <td>{{ supplier.address or "-" }}</td>
+                <td>
+                    <a href="/edit-supplier/{{ supplier.id }}">Edit</a>
+                    <a href="/delete-supplier/{{ supplier.id }}"
+                       style="color:#dc2626"
+                       onclick="return confirm('Delete this supplier?')">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td class="empty" colspan="7">No suppliers found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

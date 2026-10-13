@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Inventory</title>
+    <link rel="stylesheet" href="/static/fabrics.css">
+</head>
+<body>
+<div class="container">
+
+    <header class="header">
+        <div>
+            <h1>Fabric Inventory</h1>
+            <p>View and manage available fabrics and stock.</p>
+        </div>
+
+        {% if role_id == 1 %}
+            <a class="back-btn" href="/admin">Back to Dashboard</a>
+        {% elif role_id == 2 %}
+            <a class="back-btn" href="/sales">Back to Dashboard</a>
+        {% elif role_id == 3 %}
+            <a class="back-btn" href="/purchase">Back to Dashboard</a>
+        {% else %}
+            <a class="back-btn" href="/login">Back to Login</a>
+        {% endif %}
+    </header>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fabric Name</th>
+                    <th>Type</th>
+                    <th>Color</th>
+                    <th>GSM</th>
+                    <th>Price / Meter</th>
+                    <th>Available Stock</th>
+                    <th>Supplier</th>
+
+                    {% if role_id == 1 %}
+                        <th>Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for fabric in fabrics %}
+                <tr>
+                    <td>{{ fabric.id }}</td>
+                    <td>{{ fabric.fabric_name }}</td>
+                    <td>{{ fabric.fabric_type }}</td>
+                    <td>{{ fabric.color }}</td>
+                    <td>{{ fabric.gsm }}</td>
+                    <td>₹{{ "%.2f"|format(fabric.price_per_meter) }}</td>
+
+                    <td>
+                        <span class="{% if fabric.available_stock <= 10 %}low-stock{% else %}stock{% endif %}">
+                            {{ fabric.available_stock }}
+                        </span>
+                    </td>
+
+                    <td>{{ fabric.supplier_name }}</td>
+
+                    {% if role_id == 1 %}
+                    <td class="actions">
+                        <a href="/edit-fabric/{{ fabric.id }}">Edit</a>
+                        <a href="/update-stock/{{ fabric.id }}">Stock</a>
+                    </td>
+                    {% endif %}
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td colspan="{% if role_id == 1 %}9{% else %}8{% endif %}" class="empty">
+                        No fabrics found. Add fabrics to populate your inventory.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

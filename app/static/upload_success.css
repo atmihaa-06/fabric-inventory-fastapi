@@ -1,0 +1,293 @@
+
+/* ==========================================
+   FABRIC INVENTORY - UPLOAD SUCCESS PAGE
+   Modern Pink Theme
+   ========================================== */
+
+:root {
+    --primary: #be185d;
+    --primary-dark: #9d174d;
+    --primary-light: #fce7f3;
+    --background: #fff7fb;
+    --surface: #ffffff;
+    --text: #3b1830;
+    --muted: #80566f;
+    --border: #f3d5e5;
+    --success: #15803d;
+    --success-light: #dcfce7;
+    --radius: 18px;
+    --shadow: 0 12px 35px rgba(157, 23, 77, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(circle at 15% 15%, #fce7f3 0, transparent 30%),
+        radial-gradient(circle at 85% 85%, #fbcfe8 0, transparent 30%),
+        var(--background);
+}
+
+/* Main success card */
+.success-card {
+    position: relative;
+    width: min(540px, 100%);
+    padding: 42px 36px;
+    overflow: hidden;
+
+    text-align: center;
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    animation: card-appear 0.55s ease both;
+}
+
+/* Decorative top line */
+.success-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #be185d,
+        #ec4899,
+        #f9a8d4
+    );
+}
+
+/* Success icon */
+.success-icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--success);
+    background: var(--success-light);
+
+    border: 1px solid #bbf7d0;
+    border-radius: 50%;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    animation: icon-appear 0.65s ease both;
+}
+
+/* Heading */
+.success-card h1 {
+    margin: 0 0 12px;
+
+    color: var(--primary);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    line-height: 1.25;
+}
+
+/* Description */
+.success-card p {
+    margin: 0 0 18px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Uploaded file information */
+.file-info {
+    margin: 25px 0;
+    padding: 17px;
+
+    background: #fff7fb;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    text-align: left;
+}
+
+.file-info h3 {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-size: 14px;
+}
+
+.file-info p {
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+/* General buttons */
+.btn,
+.success-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 45px;
+    padding: 12px 20px;
+
+    color: #ffffff;
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover,
+.success-card a:hover {
+    color: #ffffff;
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+    box-shadow: 0 7px 17px rgba(190, 24, 93, 0.20);
+}
+
+/* Secondary button */
+.btn.secondary,
+.success-card a.secondary {
+    color: var(--primary);
+    background: #ffffff;
+    border-color: var(--border);
+}
+
+.btn.secondary:hover,
+.success-card a.secondary:hover {
+    color: var(--primary-dark);
+    background: var(--primary-light);
+}
+
+/* Button group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+/* Small footer text */
+.success-footer {
+    margin-top: 26px;
+    padding-top: 18px;
+
+    color: #a17a91;
+    border-top: 1px solid var(--border);
+
+    font-size: 12px;
+}
+
+/* Entrance animations */
+@keyframes card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes icon-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Tablet and mobile */
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+    }
+
+    .success-card {
+        padding: 34px 22px;
+        border-radius: 15px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+
+    .success-card p {
+        font-size: 14px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn,
+    .button-group a,
+    .success-card > a {
+        width: 100%;
+    }
+}
+
+/* Keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #f9a8d4;
+    outline-offset: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
