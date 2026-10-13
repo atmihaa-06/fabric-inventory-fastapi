@@ -80,9 +80,10 @@ def login_redirect():
 # HOME
 # --------------------------------------------------
 
+
 @app.get("/")
 def home():
-    return {"message": "Fabric Inventory API"}
+    return RedirectResponse(url="/login", status_code=303)
 
 
 # --------------------------------------------------
